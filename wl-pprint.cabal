@@ -1,5 +1,6 @@
 Name:                wl-pprint
-Version:             1.1
+Version:             1.2
+Cabal-Version:       >=1.6
 Synopsis:            The Wadler/Leijen Pretty Printer
 Category:            Text
 Description:
@@ -9,8 +10,15 @@ Description:
 License:             BSD3
 License-file:        LICENSE
 Author:              Daan Leijen
-Maintainer:          otakar.smrz cmu.edu
-Build-Depends:       base < 5
+Maintainer:          Noam Lewis <jones.noamle@gmail.com> 
 Build-Type:          Simple
-Exposed-Modules:     Text.PrettyPrint.Leijen
-Extensions:          OverlappingInstances
+
+Library
+  Build-Depends:       base < 5
+  Exposed-Modules:     Text.PrettyPrint.Leijen
+  Extensions:          OverlappingInstances
+
+source-repository head
+  type: git
+  location: git@github.com:sinelaw/wl-pprint.git
+
