@@ -119,6 +119,10 @@ import System.IO (Handle,hPutStr,hPutChar,stdout)
 import Prelude hiding ((<$>))
 #endif
 
+#if !MIN_VERSION_base(4,11,0)
+import Data.Monoid (Monoid(..))
+#endif
+
 infixr 5 </>,<//>,<$>,<$$>
 infixr 6 <+>
 #if !MIN_VERSION_base(4,11,0)
@@ -319,6 +323,10 @@ instance Semigroup Doc where
 (<>) :: Doc -> Doc -> Doc
 x <> y          = x `beside` y
 #endif
+
+instance Monoid Doc where
+  mempty = empty
+  mappend = (<>)
 
 -- | The document @(x \<+\> y)@ concatenates document @x@ and @y@ with a
 -- @space@ in between.  (infixr 6)
