@@ -16,7 +16,6 @@ Build-Type:          Simple
 Library
   Build-Depends:       base < 5
   Exposed-Modules:     Text.PrettyPrint.Leijen
-  Extensions:          OverlappingInstances
 
 source-repository head
   type: git

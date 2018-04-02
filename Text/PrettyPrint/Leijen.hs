@@ -1,4 +1,5 @@
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE OverlappingInstances #-}
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Text.PrettyPrint.Leijen
@@ -118,9 +119,15 @@ import System.IO (Handle,hPutStr,hPutChar,stdout)
 import Prelude hiding ((<$>))
 #endif
 
-infixr 5 </>,<//>,<$>,<$$>
-infixr 6 <>,<+>
+#if !MIN_VERSION_base(4,11,0)
+import Data.Monoid (Monoid(..))
+#endif
 
+infixr 5 </>,<//>,<$>,<$$>
+infixr 6 <+>
+#if !MIN_VERSION_base(4,11,0)
+infixr 6 <>
+#endif
 
 -----------------------------------------------------------
 -- list, tupled and semiBraces pretty print a list of
@@ -309,8 +316,17 @@ fold f ds       = foldr1 f ds
 -- | The document @(x \<\> y)@ concatenates document @x@ and document
 -- @y@. It is an associative operation having 'empty' as a left and
 -- right unit.  (infixr 6)
+#if MIN_VERSION_base(4,11,0)
+instance Semigroup Doc where
+  x <> y          = x `beside` y
+#else
 (<>) :: Doc -> Doc -> Doc
 x <> y          = x `beside` y
+#endif
+
+instance Monoid Doc where
+  mempty = empty
+  mappend = (<>)
 
 -- | The document @(x \<+\> y)@ concatenates document @x@ and @y@ with a
 -- @space@ in between.  (infixr 6)
