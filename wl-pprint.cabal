@@ -1,5 +1,5 @@
 Name:                wl-pprint
-Version:             1.2
+Version:             1.2.1
 Cabal-Version:       >=1.6
 Synopsis:            The Wadler/Leijen Pretty Printer
 Category:            Text
@@ -10,7 +10,7 @@ Description:
 License:             BSD3
 License-file:        LICENSE
 Author:              Daan Leijen
-Maintainer:          Noam Lewis <jones.noamle@gmail.com> 
+Maintainer:          Noam Lewis <jones.noamle@gmail.com>
 Build-Type:          Simple
 
 Library
@@ -20,4 +20,3 @@ Library
 source-repository head
   type: git
   location: git@github.com:sinelaw/wl-pprint.git
-
